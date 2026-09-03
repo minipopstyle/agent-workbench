@@ -37,23 +37,31 @@ npm ci
 
 ### 3. 启动本地服务与界面
 
-需要两个终端窗口：一个运行本地 API，另一个运行浏览器界面。
+需要两个终端窗口：一个运行本地 API，另一个运行浏览器界面。**每个新开的终端默认都在你的用户目录，必须先进入项目目录**；否则会出现 `Could not read package.json`。
 
-**终端 A：**
+**终端 A（本地 API）：**
 
 ```bash
+cd ~/agent-workbench
 npm run server
 ```
 
 看到本地服务开始监听后，不要关闭这个终端。
 
-**终端 B：**
+**终端 B（新开一个终端窗口，浏览器界面）：**
 
 ```bash
+cd ~/agent-workbench
 npm run dev
 ```
 
 浏览器打开终端显示的地址，通常是 `http://localhost:5173`。本地 API 默认只监听 `http://127.0.0.1:47832`，不会暴露到局域网。
+
+如果克隆时用了不同的目录，请把两条命令中的 `~/agent-workbench` 替换为实际目录。Windows PowerShell 可使用：
+
+```powershell
+cd $HOME\agent-workbench
+```
 
 如默认 API 端口已被占用，可在启动终端 A 时更换端口：
 
