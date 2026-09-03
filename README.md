@@ -35,6 +35,16 @@ npm ci
 
 `npm ci` 会严格按仓库中的 `package-lock.json` 安装，适合首次安装和复现环境。若你正在修改依赖，才使用 `npm install`。
 
+### 已克隆用户：更新到最新版本
+
+每次新开终端都会回到 `~`，所以请将下面整段命令一次复制执行；不要省略最前面的 `cd`：
+
+```bash
+cd ~/agent-workbench && git pull --ff-only && npm ci
+```
+
+随后按下文的方式启动服务。若克隆到了其他位置，请把 `~/agent-workbench` 换成实际目录。
+
 ### 3. 启动本地服务与界面
 
 Agent Workbench 包含两个本地进程：
@@ -47,8 +57,7 @@ Agent Workbench 包含两个本地进程：
 在项目目录执行：
 
 ```bash
-cd ~/agent-workbench
-npm run start
+cd ~/agent-workbench && npm run start
 ```
 
 这会同时启动前后端；浏览器打开 `http://localhost:5173`。这个方式适合开发和临时使用：按 `Ctrl+C` 或关闭该终端，两个进程都会停止。
