@@ -37,7 +37,33 @@ npm ci
 
 ### 3. 启动本地服务与界面
 
-需要两个终端窗口：一个运行本地 API，另一个运行浏览器界面。**每个新开的终端默认都在你的用户目录，必须先进入项目目录**；否则会出现 `Could not read package.json`。
+Agent Workbench 包含两个本地进程：
+
+- **本地 API（后端）**：读取和分析会话，固定只监听 `127.0.0.1:47832`，不会暴露到局域网。
+- **Web 界面（前端）**：浏览器页面，默认地址为 `http://localhost:5173`，通过本地代理调用 API。
+
+#### 通用方式：一条命令临时启动
+
+在项目目录执行：
+
+```bash
+cd ~/agent-workbench
+npm run start
+```
+
+这会同时启动前后端；浏览器打开 `http://localhost:5173`。这个方式适合开发和临时使用：按 `Ctrl+C` 或关闭该终端，两个进程都会停止。
+
+#### macOS 推荐方式：双击常驻启动
+
+双击项目根目录中的 `Restart Agent Workbench.command`。它会启动前后端并交给 macOS 的 `launchd` 管理；命令窗口可以关闭，服务仍会持续运行。之后直接访问 `http://localhost:5173`。
+
+需要完全停止时，双击 `Stop Agent Workbench.command`。它会停止两个常驻服务，并移除对应的本机启动配置。
+
+> 两种方式不要同时使用。若正在运行 `npm run start`，请先按 `Ctrl+C`，再双击重启 command。
+
+#### 分开启动（仅用于调试）
+
+需要两个终端窗口；**每个新开的终端默认都在你的用户目录，必须先进入项目目录**，否则会出现 `Could not read package.json`。
 
 **终端 A（本地 API）：**
 
@@ -46,16 +72,12 @@ cd ~/agent-workbench
 npm run server
 ```
 
-看到本地服务开始监听后，不要关闭这个终端。
-
-**终端 B（新开一个终端窗口，浏览器界面）：**
+**终端 B（Web 界面）：**
 
 ```bash
 cd ~/agent-workbench
 npm run dev
 ```
-
-浏览器打开终端显示的地址，通常是 `http://localhost:5173`。本地 API 默认只监听 `http://127.0.0.1:47832`，不会暴露到局域网。
 
 如果克隆时用了不同的目录，请把两条命令中的 `~/agent-workbench` 替换为实际目录。Windows PowerShell 可使用：
 
@@ -131,13 +153,14 @@ npm test       # 单元与导入回归测试
 npm run build  # TypeScript 检查与生产构建
 npm run lint   # 静态检查
 npm run preview # 本地预览生产构建（先执行 npm run build）
+npm run start  # 同时启动本地 API 与 Web 界面
 ```
 
 ## 常见问题
 
 **页面显示无法连接本地 API**
 
-确认终端 A 的 `npm run server` 仍在运行，并使用同一台电脑上的浏览器打开开发地址。若更改了 `AGENT_WORKBENCH_PORT`，请重启前端开发服务，使其使用相同的 API 地址。
+确认 `npm run start` 仍在运行，或 macOS 常驻服务已通过 `Restart Agent Workbench.command` 启动，并使用同一台电脑上的浏览器打开开发地址。若更改了 `AGENT_WORKBENCH_PORT`，请重启前端开发服务，使其使用相同的 API 地址。
 
 **`npm ci` 失败或 Node 版本不满足要求**
 

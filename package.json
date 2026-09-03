@@ -7,6 +7,7 @@
     "node": ">=22.15"
   },
   "scripts": {
+    "start": "node scripts/start-dev.mjs",
     "dev": "vite",
     "server": "tsx server/index.ts",
     "dev:server": "tsx watch server/index.ts",
