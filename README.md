@@ -65,6 +65,16 @@ AGENT_WORKBENCH_PORT=47833 npm run server
 $env:AGENT_WORKBENCH_PORT=47833; npm run server
 ```
 
+### 从旧版迁移（macOS）
+
+如果你曾使用旧项目中的 `Restart Agent Workbench.command`，它会注册一个常驻的 `launchd` 服务并占用默认 API 端口。先在**旧项目目录**运行 `Stop Agent Workbench.command`，再按本 README 启动新的克隆目录。不要同时运行两套服务。
+
+可用下面的命令确认端口已经释放；没有输出才表示可以启动新版：
+
+```bash
+lsof -nP -iTCP:47832 -sTCP:LISTEN
+```
+
 ## 使用方式
 
 ### 浏览与分析本机会话
