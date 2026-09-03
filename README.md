@@ -2,6 +2,8 @@
 
 本地优先的 Agent Session 分析工作台：把 Codex、Claude、WorkBuddy 与导入的 JSONL/Zstd 会话整理成可比较的 Turn/Run，并在浏览器中查看执行轨迹、证据和报告。
 
+![Agent Workbench 预览](public/agent-workbench-overview.png)
+
 不会读取 Codex 页面、连接 CDP、开启注入，也不会默认把原始会话日志传到外部服务。
 
 ## 功能
