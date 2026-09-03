@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-workbench.local/schemas/comparison-report-v1.schema.json",
+  "title": "Agent Workbench ComparisonReport",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion", "meta", "sessions", "validity", "summary", "outcome",
+    "efficiency", "reliability", "context", "tokenFlow", "drivers", "divergences",
+    "behavior", "recommendations", "dataQuality", "provenance"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "meta": {
+      "type": "object",
+      "required": ["type", "generatedAt", "mode", "optimizationGoal"],
+      "properties": {
+        "type": { "const": "session_comparison" },
+        "generatedAt": { "type": "string" },
+        "mode": { "enum": ["exploratory", "controlled"] },
+        "optimizationGoal": { "enum": ["balanced", "quality", "cost", "speed", "reliability"] }
+      }
+    },
+    "sessions": {
+      "type": "object",
+      "required": ["baseline", "candidate"],
+      "properties": { "baseline": { "$ref": "#/$defs/session" }, "candidate": { "$ref": "#/$defs/session" } }
+    },
+    "validity": {
+      "type": "object",
+      "required": ["level", "confidence", "experimentalVariables", "controlledVariables", "unknownVariables", "dimensions", "attributionEnabled", "summary", "warnings"],
+      "properties": {
+        "level": { "enum": ["high", "medium", "low", "invalid"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "experimentalVariables": { "type": "array", "items": { "type": "string" } },
+        "controlledVariables": { "type": "array", "items": { "type": "string" } },
+        "unknownVariables": { "type": "array", "items": { "type": "string" } },
+        "dimensions": { "type": "array", "items": { "$ref": "#/$defs/dimension" } },
+        "attributionEnabled": { "type": "boolean" },
+        "summary": { "type": "string" },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "summary": { "type": "object", "required": ["judgement", "headline", "keyFindings", "dimensionWinners"] },
+    "outcome": { "type": "object", "required": ["baseline", "candidate", "evidenceCoverage"] },
+    "efficiency": { "type": "object" },
+    "reliability": { "type": "object" },
+    "context": { "type": "object", "required": ["baseline", "candidate", "compositionDelta"] },
+    "tokenFlow": { "type": "array" },
+    "drivers": { "type": "object", "required": ["tokens", "runtime"] },
+    "divergences": { "type": "array", "maxItems": 5 },
+    "behavior": { "type": "object", "required": ["metrics", "patterns"] },
+    "recommendations": { "type": "array" },
+    "dataQuality": { "type": "object", "required": ["baseline", "candidate", "warnings"] },
+    "provenance": { "type": "object", "required": ["analyzerVersion", "schemaVersion", "metricDefinitionsVersion", "baselineSessionId", "candidateSessionId", "generatedAt"] }
+  },
+  "$defs": {
+    "session": {
+      "type": "object",
+      "required": ["source", "sessionId", "model", "provider", "status", "durationMs"],
+      "properties": {
+        "source": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "turnId": { "type": ["string", "null"] },
+        "title": { "type": ["string", "null"] },
+        "model": { "type": ["string", "null"] },
+        "provider": { "type": ["string", "null"] },
+        "reasoningEffort": { "type": ["string", "null"] },
+        "harnessFamily": { "type": ["string", "null"] },
+        "harnessVersion": { "type": ["string", "null"] },
+        "status": { "type": "string" },
+        "startedAt": { "type": ["string", "null"] },
+        "endedAt": { "type": ["string", "null"] },
+        "durationMs": { "type": ["number", "null"] },
+        "projectLabel": { "type": ["string", "null"] },
+        "environmentLabel": { "type": ["string", "null"] }
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "required": ["key", "label", "relation", "role"],
+      "properties": {
+        "key": { "type": "string" },
+        "label": { "type": "string" },
+        "relation": { "enum": ["same", "different", "unknown"] },
+        "role": { "enum": ["controlled", "experimental", "unknown"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{"timestamp":"2026-08-20T10:00:00.000Z","type":"session_meta","payload":{"id":"11111111-1111-4111-8111-111111111111","source":"user","model":"gpt-5"}}
+{"timestamp":"2026-08-20T10:00:00.010Z","type":"event_msg","payload":{"type":"user_message","client_id":"m1","message":"Inspect the project"}}
+{"timestamp":"2026-08-20T10:00:00.020Z","type":"event_msg","payload":{"type":"task_started","turn_id":"t1"}}
+{"timestamp":"2026-08-20T10:00:00.030Z","type":"response_item","payload":{"id":"r1","type":"reasoning","summary":[{"type":"summary_text","text":"I will inspect the project."}]}}
+{"timestamp":"2026-08-20T10:00:00.040Z","type":"event_msg","payload":{"type":"agent_reasoning","text":"duplicate reasoning"}}
+{"timestamp":"2026-08-20T10:00:00.050Z","type":"response_item","payload":{"id":"c1","type":"custom_tool_call","name":"exec","call_id":"call-1","input":"{\"command\":\"printf hello\"}"}}
+{"timestamp":"2026-08-20T10:00:00.150Z","type":"response_item","payload":{"id":"o1","type":"custom_tool_call_output","call_id":"call-1","output":[{"type":"input_text","text":"hello"}]}}
+{"timestamp":"2026-08-20T10:00:00.160Z","type":"response_item","payload":{"id":"a1","type":"message","role":"assistant","content":[{"type":"output_text","text":"Done"}]}}
+{"timestamp":"2026-08-20T10:00:00.170Z","type":"event_msg","payload":{"type":"agent_message","message":"duplicate assistant"}}
+{"timestamp":"2026-08-20T10:00:00.180Z","type":"event_msg","payload":{"type":"token_count","info":{"total_token_usage":{"total_tokens":42},"last_token_usage":{"reasoning_output_tokens":7,"output_tokens":9}}}}
+{"timestamp":"2026-08-20T10:00:00.220Z","type":"event_msg","payload":{"type":"task_complete","turn_id":"t1","time_to_first_token_ms":30,"duration_ms":220}}

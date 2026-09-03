@@ -1,0 +1,23 @@
+{
+  "referenceMode": "direct_product_screenshot",
+  "sourceScreenshot": "pixelpatch/reference.png",
+  "selectedPack": "Production React Pack",
+  "regions": [
+    { "id": "sidebar", "selector": ".aw-sidebar", "type": "code-first", "threshold": 0.98 },
+    { "id": "compare-header", "selector": ".aw-compare-header", "type": "code-first", "threshold": 0.98 },
+    { "id": "session-selectors", "selector": ".aw-compare-selector-wrap", "type": "code-first", "threshold": 0.98 },
+    { "id": "comparison-validity", "selector": ".aw-cv-card", "type": "code-first", "threshold": 0.95 },
+    { "id": "comparison-summary", "selector": ".aw-summary-section", "type": "code-first", "threshold": 0.95 },
+    { "id": "outcome-evidence", "selector": ".aw-outcome-compare", "type": "code-first", "threshold": 0.95 },
+    { "id": "efficiency-cost", "selector": ".aw-efficiency-compare", "type": "code-first", "threshold": 0.95 },
+    { "id": "reliability", "selector": ".aw-reliability-compare", "type": "code-first", "threshold": 0.95 },
+    { "id": "context-efficiency", "selector": ".aw-context-compare", "type": "code-first", "threshold": 0.95 },
+    { "id": "cost-drivers", "selector": ".aw-driver-card", "type": "code-first", "threshold": 0.95 },
+    { "id": "divergence-points", "selector": ".aw-divergence-card", "type": "code-first", "threshold": 0.95 },
+    { "id": "trajectory", "selector": ".aw-trajectory-section-v3", "type": "code-first", "threshold": 0.95 },
+    { "id": "behavior-delta", "selector": ".aw-behavior-delta", "type": "code-first", "threshold": 0.95 },
+    { "id": "behavior-patterns", "selector": ".aw-pattern-card", "type": "code-first", "threshold": 0.95 },
+    { "id": "recommendations", "selector": ".aw-recommendation-card", "type": "code-first", "threshold": 0.95 }
+  ],
+  "analysis": "The reference is a direct Trace Compare product screenshot. The page uses the existing React/Vite stack, Lucide icons, CSS grid, native controls, deterministic SVG trajectory previews, stacked context bars and data-driven comparison tables. No model-generated asset regions are present."
+}

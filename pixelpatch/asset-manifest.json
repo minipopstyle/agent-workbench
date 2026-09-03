@@ -1,0 +1,5 @@
+{
+  "reference": "pixelpatch/reference.png",
+  "assets": [],
+  "notes": "Trace Compare direct product screenshot. All visible regions are code-first: layout, text, Lucide icons, deterministic SVG trajectory preview, stacked context bars and comparison tables. No model-generated assets are required."
+}
